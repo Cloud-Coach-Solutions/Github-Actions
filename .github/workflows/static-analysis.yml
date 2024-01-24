@@ -1,92 +1,31 @@
 name: Static Analysis
 on:
-    pull_request:
-        types: [opened, reopened, synchronize]
+    workflow_call:
+        inputs:
+            config-path:
+                required: true
+                type: string
+        secrets:
+            token:
+                required: true
 
 jobs:
-    class-analysis:
+    analyze:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+            - uses: actions/checkout@v3
               with:
                   fetch-depth: 0
 
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
-
-            - name: Apex Classes Scan
+            - name: Install SFDX CLI and Scanner
               run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
+                  npm install sfdx-cli -g
+                  sfdx plugins:install @salesforce/sfdx-scanner
 
-    trigger-analysis:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+            - name: Run SFDX Scanner - Report findings as comments
+              uses: mitchspano/sfdx-scan-pull-request@v0.1.15
               with:
-                  fetch-depth: 0
-
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
-
-            - name: Apex Triggers Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
-
-    javascript-analysis:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
-
-            - name: Aura JS Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/aura/*/*.js
-
-            - name: LWC JS Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/lwc/*/*.js
-
-    html-analysis:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
-
-            # - name: Aura HTML Scan
-            #   run: |
-            #       pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/aura/*/*.html
-
-            - name: LWC HTML Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/lwc/*/*.html
-    # analysis:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout code
-    #           uses: actions/checkout@v3
-    #           with:
-    #               fetch-depth: 0
-
-    #         - name: Setup PMD
-    #           uses: legetz/setup-pmd@7.0.0-rc3
-
-    #         - name: Run SFDX Scanner - Report findings as comments
-    #           uses: mitchspano/sfdx-scan-pull-request@v0.1.15
-    #           with:
-    #               pmdconfig: ./pmd-rules.xml
-    #               severity-threshold: 4
-    #               strictly-enforced-rules: '[{ "engine": "pmd", "category": "Performance", "rule": "AvoidDebugStatements" }]'
-    #           env:
-    #               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  pmdconfig: .github/workflows/pmd-rules.xml
+                  severity-threshold: 4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
