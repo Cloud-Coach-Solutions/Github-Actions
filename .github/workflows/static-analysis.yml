@@ -2,13 +2,10 @@ name: Static Analysis
 on:
     workflow_call:
         inputs:
-            config-path:
+            github-token:
+                description: "secrets.GITHUB_TOKEN"
                 required: true
-                type: string
-        secrets:
-            token:
-                required: true
-
+                type: "string"
 jobs:
     analyze:
         runs-on: ubuntu-latest
@@ -26,6 +23,8 @@ jobs:
               uses: mitchspano/sfdx-scan-pull-request@v0.1.15
               with:
                   pmdconfig: .github/workflows/pmd-rules.xml
-                  severity-threshold: 4
+                  severity-threshold: 1
+                  report-mode: comments
+                  delete-resolved-comments: true
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ inputs.github-token }}
