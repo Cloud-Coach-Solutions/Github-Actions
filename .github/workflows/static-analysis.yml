@@ -26,7 +26,7 @@ jobs:
             - name: Run SFDX Scanner - Report findings as comments
               uses: mitchspano/sfdx-scan-pull-request@v0.1.15
               with:
-                  pmdconfig: ${{github.workspace}}/.github/workflows/pmd-rules.yml
+                  pmdconfig: .github/workflows/pmd-rules.yml
                   severity-threshold: 1
                   report-mode: comments
                   delete-resolved-comments: true
