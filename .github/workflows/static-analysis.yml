@@ -21,6 +21,9 @@ jobs:
 
             - name: log
               run: |
+                  ls
+                  ls .github
+                  ls .github/workflows
                   cat .github/workflows/pmd-rules.yml
 
             - name: Run SFDX Scanner - Report findings as comments
