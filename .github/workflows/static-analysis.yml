@@ -32,3 +32,8 @@ jobs:
                   delete-resolved-comments: true
               env:
                   GITHUB_TOKEN: ${{ inputs.github-token }}
+                  
+            - name: Apex Classes Scan
+              run: |
+                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
+    
