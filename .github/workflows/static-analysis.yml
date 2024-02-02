@@ -13,7 +13,18 @@ jobs:
             - uses: actions/checkout@v3
               with:
                   fetch-depth: 0
-
+                  
+            - name: Setup PMD
+              uses: legetz/setup-pmd@7.0.0-rc3
+                  
+            - name: Apex Classes Scan
+              run: |
+                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
+                  
+            - name: Apex Triggers Scan
+              run: |
+                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
+    
             - name: Install SFDX CLI and Scanner
               run: |
                   npm install sfdx-cli -g
@@ -33,14 +44,4 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ inputs.github-token }}
 
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
-                  
-            - name: Apex Classes Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
-                  
-            - name: Apex Triggers Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
-    
+            
