@@ -36,4 +36,8 @@ jobs:
             - name: Apex Classes Scan
               run: |
                   pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
+                  
+            - name: Apex Triggers Scan
+              run: |
+                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
     
