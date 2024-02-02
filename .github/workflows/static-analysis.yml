@@ -13,6 +13,10 @@ jobs:
             - uses: actions/checkout@v3
               with:
                   fetch-depth: 0
+                                    
+            - name: Fetch Pmd Config
+              run: |
+                  curl -o .github/workflows/pmd-rules.xml https://raw.githubusercontent.com/Cloud-Coach-Solutions/Github-Actions/main/.github/workflows/pmd-rules.xml
                   
             - name: Setup PMD
               uses: legetz/setup-pmd@7.0.0-rc3
@@ -29,10 +33,6 @@ jobs:
               run: |
                   npm install sfdx-cli -g
                   sfdx plugins:install @salesforce/sfdx-scanner
-                  
-            - name: Fetch Pmd Config
-              run: |
-                  curl -o .github/workflows/pmd-rules.xml https://raw.githubusercontent.com/Cloud-Coach-Solutions/Github-Actions/main/.github/workflows/pmd-rules.xml
                   
             - name: Run SFDX Scanner - Report findings as comments
               uses: mitchspano/sfdx-scan-pull-request@v0.1.15
