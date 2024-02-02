@@ -18,16 +18,16 @@ jobs:
               run: |
                   curl -o .github/workflows/pmd-rules.xml https://raw.githubusercontent.com/Cloud-Coach-Solutions/Github-Actions/main/.github/workflows/pmd-rules.xml
                   
-            - name: Setup PMD
-              uses: legetz/setup-pmd@7.0.0-rc3
+#            - name: Setup PMD
+#              uses: legetz/setup-pmd@7.0.0-rc3
                   
-            - name: Apex Classes Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
+#            - name: Apex Classes Scan
+#              run: |
+#                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/classes/*.cls
                   
-            - name: Apex Triggers Scan
-              run: |
-                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
+#            - name: Apex Triggers Scan
+#              run: |
+#                  pmd check -f textcolor -R .github/workflows/pmd-rules.xml -d ./force-app/main/default/triggers/*.trigger
     
             - name: Install SFDX CLI and Scanner
               run: |
