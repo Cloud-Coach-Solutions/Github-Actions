@@ -32,6 +32,9 @@ jobs:
                   delete-resolved-comments: true
               env:
                   GITHUB_TOKEN: ${{ inputs.github-token }}
+
+            - name: Setup PMD
+              uses: legetz/setup-pmd@7.0.0-rc3
                   
             - name: Apex Classes Scan
               run: |
