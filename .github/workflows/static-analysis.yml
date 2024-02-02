@@ -23,16 +23,6 @@ jobs:
               run: |
                   curl -o .github/workflows/pmd-rules.xml https://raw.githubusercontent.com/Cloud-Coach-Solutions/Github-Actions/main/.github/workflows/pmd-rules.xml
                   
-            - name: DEBUG
-              run: |
-                  ls 
-                  echo '---------'
-                  ls .github/
-                  echo '---------'
-                  ls .github/workflows
-                  echo '---------'
-                  cat .github/workflows/pmd-rules.xml
-
             - name: Run SFDX Scanner - Report findings as comments
               uses: mitchspano/sfdx-scan-pull-request@v0.1.15
               with:
