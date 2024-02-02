@@ -39,7 +39,7 @@ jobs:
               with:
                   pmdconfig: .github/workflows/pmd-rules.xml
                   severity-threshold: 1
-                  report-mode: comments
+                  #report-mode: comments
                   delete-resolved-comments: true
               env:
                   GITHUB_TOKEN: ${{ inputs.github-token }}
