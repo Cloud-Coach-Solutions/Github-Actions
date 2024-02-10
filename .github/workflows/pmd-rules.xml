@@ -68,9 +68,9 @@
 	<rule ref="category/apex/design.xml/StdCyclomaticComplexity">
 		<priority>1</priority>
 	</rule>
-	<rule ref="category/apex/design.xml/UnusedMethod">
+	<!-- <rule ref="category/apex/design.xml/UnusedMethod">
 		<priority>1</priority>
-	</rule>
+	</rule> -->
 
 	<!-- ** DOCUMENTATION CONFIGURATION ** -->
 	<!-- <rule ref="category/apex/documentation.xml">
