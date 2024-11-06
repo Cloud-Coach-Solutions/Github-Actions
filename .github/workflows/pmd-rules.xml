@@ -56,13 +56,16 @@
 		ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts"
 		message="Deeply nested if..then statements are hard to read. Consider creating a new method for the inner if statements."
 	>
-		<priority>1</priority>
+		<priority>3</priority>
+		<properties>
+        	<property name="problemDepth" value="8" />
+		</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/CognitiveComplexity">
-		<priority>1</priority>
+		<priority>3</priority>
 	</rule>
 	<rule ref="category/apex/design.xml/CyclomaticComplexity">
-		<priority>1</priority>
+		<priority>3</priority>
 	</rule>
 	<rule ref="category/apex/design.xml/ExcessiveClassLength">
 		<priority>1</priority>
