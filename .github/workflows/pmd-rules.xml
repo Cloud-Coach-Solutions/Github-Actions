@@ -63,9 +63,17 @@
 	</rule>
 	<rule ref="category/apex/design.xml/CognitiveComplexity">
 		<priority>3</priority>
+		    <properties>
+				<!-- <property name="classReportLevel" value="50" /> -->
+				<property name="methodReportLevel" value="30" />
+			</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/CyclomaticComplexity">
 		<priority>3</priority>
+		<properties>
+			<!-- <property name="classReportLevel" value="40" /> -->
+			<property name="methodReportLevel" value="30" />
+		</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/ExcessiveClassLength">
 		<priority>1</priority>
