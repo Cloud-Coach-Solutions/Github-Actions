@@ -24,8 +24,9 @@
 	<rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger">
 		<priority>1</priority>
 	</rule>
+	<!-- Considering priority of 5, if this is still annoying, lets remove this -->
 	<rule ref="category/apex/bestpractices.xml/UnusedLocalVariable">
-		<priority>3</priority>
+		<priority>5</priority>
 	</rule>
 
 	<!-- ** CODE STYLE CONFIGURATION ** -->
@@ -63,16 +64,16 @@
 	</rule>
 	<rule ref="category/apex/design.xml/CognitiveComplexity">
 		<priority>3</priority>
-		    <properties>
-				<!-- <property name="classReportLevel" value="50" /> -->
-				<property name="methodReportLevel" value="30" />
-			</properties>
+		<properties>
+			<property name="classReportLevel" value="60" />
+			<property name="methodReportLevel" value="50" />
+		</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/CyclomaticComplexity">
 		<priority>3</priority>
 		<properties>
-			<!-- <property name="classReportLevel" value="40" /> -->
-			<property name="methodReportLevel" value="30" />
+			<property name="classReportLevel" value="60" />
+			<property name="methodReportLevel" value="50" />
 		</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/ExcessiveClassLength">
