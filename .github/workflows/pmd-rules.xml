@@ -81,9 +81,17 @@
 	</rule>
 	<rule ref="category/apex/design.xml/NcssMethodCount">
 		<priority>1</priority>
+		<properties>
+			<property name="minimum" value="60" />
+		</properties>
 	</rule>
 	<rule ref="category/apex/design.xml/StdCyclomaticComplexity">
 		<priority>1</priority>
+		<properties>
+			<property name="reportLevel" value="30" />
+			<property name="showClassesComplexity" value="true" />
+			<property name="showMethodsComplexity" value="true" />
+    	</properties>
 	</rule>
 	<!-- <rule ref="category/apex/design.xml/UnusedMethod">
 		<priority>1</priority>
